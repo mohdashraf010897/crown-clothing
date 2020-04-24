@@ -4,7 +4,11 @@ import logger from "redux-logger";
 
 import rootReducer from "./root-reducer";
 
-const middlewares = [logger]; // we can pass on infinite middlewares to the applymiddleware function so using an array
+const middlewares = []; // we can pass on infinite middlewares to the applymiddleware function so using an array
+
+if (process.env.NODE_ENV === "development") {
+  middlewares.push(logger);
+}
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
